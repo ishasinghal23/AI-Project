@@ -1,10 +1,10 @@
-# AI-Project
 import pyttsx3
 import datetime
 import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
+import pyjokes
 
 
 engine = pyttsx3.init('sapi5')
@@ -25,7 +25,7 @@ def wishme():
         speak("good afternoon")
     else:
         speak('good evening')
-    speak('hello, i am doremi, how may i help you.')
+    speak('i am Veea, how may i help you.')
     
 #it takes microphone input from the user and give string output 
 def takeCommand():
@@ -40,11 +40,10 @@ def takeCommand():
         query = r.recognize_google(audio, language="en-in")
         print(f"user said: {query}\n")
     except Exception:
-        print("say it again")
+        print("say it again/n")
         speak('say it again')
         return "none"
-    return query
-       
+    return query     
 
 if __name__ == '__main__':
     wishme()
@@ -58,10 +57,9 @@ if __name__ == '__main__':
             speak("according to wikipedia..")
             print(results)
             speak(results)
-            
-            
-        elif "quit" in query:
-            speak("good bye")
+        
+        elif ("quit" or "close") in query:
+            speak("Its nice talking to you, good bye")
             break
             
         elif "open youtube" in query:
@@ -75,3 +73,13 @@ if __name__ == '__main__':
         elif "the time" in query:
             strtime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f" the time is {strtime}")
+            
+        elif "introduce" in query:
+            speak("Hello I am Veea. Your personal Virtual Assistant. i am here to help you with your PC tasks")
+            
+        elif "joke" in query:
+            speak(pyjokes.get_joke())
+            
+        elif "open spotify" in query:
+            os.system("spotify")
+            speak("openig spotify")
